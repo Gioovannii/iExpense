@@ -21,7 +21,7 @@ struct CodableView: View {
                 let encoder = JSONEncoder()
                 
                 if let data = try? encoder.encode(self.user) {
-                    
+                    UserDefaults.standard.set(data, forKey: "UserData")
                 }
             }
             
