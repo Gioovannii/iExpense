@@ -28,6 +28,11 @@ struct DeleteItemsView: View {
             .navigationBarItems(leading: EditButton())
         }
     }
+    
+    func removeRows(at offsets: IndexSet) {
+        numbers.remove(atOffsets: offsets)
+        
+    }
 }
 
 struct DeleteItemsView_Previews: PreviewProvider {
