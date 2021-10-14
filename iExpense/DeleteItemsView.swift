@@ -8,8 +8,21 @@
 import SwiftUI
 
 struct DeleteItemsView: View {
+    @State private var numbers = [Int]()
+    @State var currentNumber = 1
     var body: some View {
-        Text("Hello, World!")
+        VStack {
+            List {
+                ForEach(numbers, id: \.self) {
+                    Text("\($0)")
+                }
+            }
+            
+            Button("Add number") {
+                self.numbers.append(self.currentNumber)
+                self.currentNumber += 1
+            }
+        }
     }
 }
 
