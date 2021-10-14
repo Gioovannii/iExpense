@@ -10,6 +10,7 @@ import SwiftUI
 struct DeleteItemsView: View {
     @State private var numbers = [Int]()
     @State var currentNumber = 1
+    
     var body: some View {
         NavigationView {
             VStack {
