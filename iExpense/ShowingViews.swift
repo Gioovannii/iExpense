@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct SecondView: View {
+    @Environment(\.presentationMode) var presentationMode
+    var name: String
     var body: some View {
         Text("Second view")
     }
