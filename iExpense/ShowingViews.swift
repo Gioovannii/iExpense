@@ -22,8 +22,15 @@ struct SecondView: View {
 }
 
 struct ShowingViews: View {
+    @State private var showingSheet = false
     var body: some View {
-        Text("Hello, World!")
+        Button("Show Sheet") {
+            self.showingSheet.toggle()
+        }
+        .sheet(isPresented: $showingSheet) {
+            // content of the sheet
+            SecondView(name: "Giovanni")
+        }
     }
 }
 
