@@ -7,6 +7,11 @@
 
 import SwiftUI
 
+struct UserObject: Codable {
+    var firstName: String
+    var lastName: String
+}
+
 struct CodableView: View {
     var body: some View {
         Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
