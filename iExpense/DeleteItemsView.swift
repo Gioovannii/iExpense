@@ -11,17 +11,21 @@ struct DeleteItemsView: View {
     @State private var numbers = [Int]()
     @State var currentNumber = 1
     var body: some View {
-        VStack {
-            List {
-                ForEach(numbers, id: \.self) {
-                    Text("\($0)")
+        NavigationView {
+            VStack {
+                List {
+                    ForEach(numbers, id: \.self) {
+                        Text("\($0)")
+                    }
+                    .onDelete(perform: removeRows(at:))
+                }
+                
+                Button("Add number") {
+                    self.numbers.append(self.currentNumber)
+                    self.currentNumber += 1
                 }
             }
-            
-            Button("Add number") {
-                self.numbers.append(self.currentNumber)
-                self.currentNumber += 1
-            }
+            .navigationBarItems(leading: EditButton())
         }
     }
 }
