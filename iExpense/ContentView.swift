@@ -7,6 +7,13 @@
 
 import SwiftUI
 
+
+struct ExpenseItem {
+    let name: String
+    let type: String
+    let amount: Int
+}
+
 struct ContentView: View {
     var body: some View {
         Text("Hello, world!")
