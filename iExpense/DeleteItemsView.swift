@@ -32,7 +32,6 @@ struct DeleteItemsView: View {
     
     func removeRows(at offsets: IndexSet) {
         numbers.remove(atOffsets: offsets)
-        
     }
 }
 
