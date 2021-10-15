@@ -40,8 +40,10 @@ class Expenses: ObservableObject {
         self.items = []
     }
 }
+
 struct ContentView: View {
     @ObservedObject var expenses = Expenses()
+    @State private var showingAddExpense = false
     
     var body: some View {
         NavigationView {
