@@ -56,12 +56,14 @@ struct ContentView: View {
             .navigationTitle("iExpense")
             .navigationBarItems(trailing:
                                     Button(action: {
-                let expense = ExpenseItem(name: "Test", type: "Personal", amount: 5)
-                self.expenses.items.append(expense)
+                self.showingAddExpense = true
             }) {
                 Image(systemName: "plus")
             })
-            
+            .sheet(isPresented: $showingAddExpense) {
+                // show add view here
+                AddView(expenses: self.expenses)
+            }
         }
     }
     
