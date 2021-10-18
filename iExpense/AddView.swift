@@ -33,14 +33,19 @@ struct AddView: View {
                     .keyboardType(.numberPad)
             }
             .navigationTitle("Add new expense")
-                .navigationBarItems(trailing: Button("Save") {
-                    if let actualAmount = Int(self.amount) {
-                        let item = ExpenseItem(name: self.name, type: self.type, amount: actualAmount)
-                        self.expenses.items.append(item)
-                        
-                    }
-                })
-            
+            .navigationBarItems(trailing: Button("Save") {
+                if let actualAmount = Int(self.amount) {
+                    let item = ExpenseItem(name: self.name, type: self.type, amount: actualAmount)
+                    self.expenses.items.append(item)
+                    
+                    presentationMode.wrappedValue.dismiss()
+                } else {
+                    showingAlert = true
+                }
+            })
+            .alert(isPresented: $showingAlert) {
+                Alert(title: Text("Oups ..."), message: Text("You must enter a price"), dismissButton: .default(Text("OK my bad")))
+            }
         }
     }
 }
