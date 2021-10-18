@@ -7,7 +7,6 @@
 
 import SwiftUI
 
-
 struct ExpenseItem: Identifiable, Codable {
     let id = UUID()
     let name: String
@@ -53,7 +52,9 @@ struct ContentView: View {
                 }
                 .onDelete(perform: removeItems(at:))
             }
+            
             .navigationTitle("iExpense")
+            .navigationBarItems(leading: EditButton())
             .navigationBarItems(trailing:
                                     Button(action: {
                 self.showingAddExpense = true
