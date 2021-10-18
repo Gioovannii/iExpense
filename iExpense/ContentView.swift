@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct ExpenseItem: Identifiable, Codable {
-    let id = UUID()
+    var id = UUID()
     let name: String
     let type: String
     let amount: Int
@@ -48,7 +48,25 @@ struct ContentView: View {
         NavigationView {
             List {
                 ForEach(expenses.items) { item in
-                    Text(item.name)
+                    HStack {
+                        VStack(alignment: .leading) {
+                            Text(item.name)
+                                .font(.headline)
+                            Text(item.type)
+                        }
+                        
+                        Spacer()
+                        if item.amount < 11 {
+                            Text("$\(item.amount)")
+                                .foregroundColor(Color.green)
+                        } else if item.amount < 101 {
+                            Text("$\(item.amount)")
+                                .foregroundColor(Color.yellow)
+                        } else {
+                            Text("$\(item.amount)")
+                                .foregroundColor(Color.red)
+                        }
+                    }
                 }
                 .onDelete(perform: removeItems(at:))
             }
