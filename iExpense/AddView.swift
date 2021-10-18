@@ -8,10 +8,12 @@
 import SwiftUI
 
 struct AddView: View {
+    @Environment(\.presentationMode) var presentationMode
     @ObservedObject var expenses: Expenses
     @State private var name = ""
     @State private var type = "Personal"
     @State private var amount = ""
+    @State private var showingAlert = false
     
     static let types = ["Business", "Personal"]
     
