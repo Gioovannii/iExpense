@@ -7,41 +7,10 @@
 
 import SwiftUI
 
-struct ExpenseItem: Identifiable, Codable {
-    var id = UUID()
-    let name: String
-    let type: String
-    let amount: Int
-}
-
-class Expenses: ObservableObject {
-    @Published var items = [ExpenseItem]() {
-        didSet {
-            let encoder = JSONEncoder()
-            
-            if let encoded = try?
-                encoder.encode(items) {
-                UserDefaults.standard.set(encoded, forKey: "Items")
-            }
-        }
-    }
-    
-    init() {
-        if let items = UserDefaults.standard.data(forKey: "Items") {
-            let decoder = JSONDecoder()
-            
-            if let decoded = try? decoder.decode([ExpenseItem].self, from: items) {
-                self.items = decoded
-                return
-            }
-        }
-        
-        self.items = []
-    }
-}
-
 struct ContentView: View {
     @ObservedObject var expenses = Expenses()
+//    @StateObject var expenses = Expenses()
+
     @State private var showingAddExpense = false
     
     var body: some View {
@@ -57,20 +26,20 @@ struct ContentView: View {
                         
                         Spacer()
                         if item.amount < 11 {
-                            Text("$\(item.amount)")
+                            Text(item.amount, format: .currency(code: "USD"))
                                 .foregroundColor(Color.green)
                         } else if item.amount < 101 {
-                            Text("$\(item.amount)")
+                            Text(item.amount, format: .currency(code: "USD"))
                                 .foregroundColor(Color.yellow)
                         } else {
-                            Text("$\(item.amount)")
+                            Text(item.amount, format: .currency(code: "USD"))
                                 .foregroundColor(Color.red)
                         }
                     }
                 }
                 .onDelete(perform: removeItems(at:))
             }
-            
+        
             .navigationTitle("iExpense")
             .navigationBarItems(leading: EditButton())
             .navigationBarItems(trailing:
